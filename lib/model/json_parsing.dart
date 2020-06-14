@@ -13,7 +13,8 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
   @override
   void initState() {
     super.initState();
-    data = getData();
+    /* data = getData(); */
+    
   }
 
   @override
@@ -21,6 +22,21 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Json Parsing'),
+      ),
+      body: Center(
+        child: Container(
+          child: FutureBuilder(
+            future: getData(),
+            builder: (context, AsyncSnapshot snapShot) {
+              if (snapShot.hasData) {
+                 return Text(snapShot.data[0]['title']);
+              } else {
+                return CircularProgressIndicator();
+              }
+             
+            },
+          ),
+        ),
       ),
     );
   }
@@ -30,9 +46,9 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
     String url = 'https://jsonplaceholder.typicode.com/posts';
     Network network = Network(url);
     data = network.fetchData();
-    data.then((value) {
+    /*  data.then((value) {
       print(value[0]['title']);
-    });
+    }); */
 
     return data;
   }

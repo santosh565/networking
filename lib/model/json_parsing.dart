@@ -14,7 +14,6 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
   void initState() {
     super.initState();
     /* data = getData(); */
-    
   }
 
   @override
@@ -29,11 +28,13 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
             future: getData(),
             builder: (context, AsyncSnapshot snapShot) {
               if (snapShot.hasData) {
-                 return Text(snapShot.data[0]['title']);
+                return createListView(context, snapShot.data);
+                /*  return Text(
+                                  snapShot.data[0]['userId'].toString(),
+                                ); */
               } else {
                 return CircularProgressIndicator();
               }
-             
             },
           ),
         ),
@@ -47,10 +48,36 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
     Network network = Network(url);
     data = network.fetchData();
     /*  data.then((value) {
-      print(value[0]['title']);
-    }); */
+                      print(value[0]['title']);
+                    }); */
 
     return data;
+  }
+
+  Widget createListView(BuildContext context, List data) {
+    return ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, int index) {
+        return Column(
+          children: <Widget>[
+            Divider(
+              thickness: 2,
+              height: 2,
+            ),
+            ListTile(
+              leading: CircleAvatar(
+                radius: 20,
+                child: Text(
+                  '${data[index]['id']}',
+                ),
+              ),
+              title: Text('${data[index]['title']}'),
+              subtitle: Text('${data[index]['body']}'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 

@@ -1,3 +1,16 @@
+class PostList{
+  final List<Post> posts;
+
+  PostList({this.posts});
+
+  factory PostList.fromParsedJson(List<dynamic> parsedJson ){
+    List<Post> posts = List<Post>();
+    posts = parsedJson.map((i) => Post.fromJson(i)).toList();
+    return PostList(posts: posts);
+
+  }
+
+}
 class Post {
   int userId;
   int id;

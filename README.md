@@ -1,4 +1,4 @@
-# counter_with_bloc
+# networking demo
 
 A new Flutter project.
 

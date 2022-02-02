@@ -22,7 +22,7 @@ class PlaceHolderRepository {
     try {
       final response = await _dio.get('posts');
       List<Post> posts = AllPostsResponse.fromJson(response.data).posts;
-      return ApiResult.success(successData: posts);
+      return ApiResult.success(posts);
     } catch (error, stackTrace) {
       debugPrint("error occured $error stackTrace:$stackTrace");
       return ApiResult.failure(handleError(error));

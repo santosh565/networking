@@ -42,8 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _placeHolderBloc = PlaceHolderBloc()
-    ..getAllPosts();
+    _placeHolderBloc = PlaceHolderBloc()..getAllPosts();
   }
 
   @override
@@ -79,7 +78,12 @@ class _MyHomePageState extends State<MyHomePage> {
               var post = posts[index];
               return Card(
                 child: ListTile(
+                  onTap: () {},
                   title: Text(post.title),
+                  subtitle: Text(post.body),
+                  leading: Text(
+                    post.userId.toString(),
+                  ),
                 ),
               );
             },

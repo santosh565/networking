@@ -1,3 +1,4 @@
+import 'package:counter_with_bloc/model/post.dart';
 import 'package:counter_with_bloc/repository/api_result.dart';
 import 'package:counter_with_bloc/repository/api_client.dart';
 import 'package:dio/dio.dart';

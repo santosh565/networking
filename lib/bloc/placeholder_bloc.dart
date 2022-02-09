@@ -1,5 +1,5 @@
+import 'package:counter_with_bloc/model/post.dart';
 import 'package:counter_with_bloc/repository/placeholder_repository.dart';
-import 'package:counter_with_bloc/response/get_all_post_response.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PlaceHolderBloc {

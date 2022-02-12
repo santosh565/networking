@@ -1,10 +1,9 @@
-import 'package:counter_with_bloc/model/post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/placeholder_bloc.dart';
 import 'cubit/counter_cubit.dart';
-import 'response/get_all_post_response.dart';
+import 'model/post.dart';
 
 void main() {
   runApp(const MyApp());
@@ -80,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
               return Card(
                 child: ListTile(
                   onTap: () {},
-                  title: Text(post.title),
+                  title: const Text("post.title"),
                   subtitle: Text(post.body!),
                   leading: Text(
                     post.userId.toString(),
@@ -130,5 +129,3 @@ class CounterText extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,5 +1,4 @@
-import 'package:counter_with_bloc/model/post.dart';
-
+import '../model/post.dart';
 
 class AllPostsResponse {
   List<Post> posts;
@@ -8,7 +7,4 @@ class AllPostsResponse {
 
   AllPostsResponse.fromJson(List<dynamic> json)
       : posts = json.map((post) => Post.fromJson(post)).toList();
- 
 }
-
-

@@ -4,13 +4,13 @@ part 'post.g.dart';
 
 @JsonSerializable()
 class Post {
-  int userId;
+  int? userId;
   int id;
   String title;
   String? body;
 
   Post({
-    required this.userId,
+     this.userId,
     required this.id,
     required this.title,
     this.body,

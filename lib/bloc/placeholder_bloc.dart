@@ -18,8 +18,8 @@ class PlaceHolderBloc {
     if (posts != null) {
       _subject.sink.add(posts);
     }
-    if (response.error.isNotEmpty) {
-      _subject.sink.addError(response.error);
+    if (response.error != null) {
+      _subject.sink.addError(response.error!);
     }
   }
 

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-String handleError(error) {
+String errorHandler(error) {
   String? errorDescription;
   if (error is DioError) {
     DioError dioError = error;

@@ -24,7 +24,7 @@ class PlaceHolderRepository {
       return ApiResult.success(posts);
     } catch (error, stackTrace) {
       debugPrint("error occured $error stackTrace:$stackTrace");
-      return ApiResult.failure(handleError(error));
+      return ApiResult.failure(errorHandler(error));
     }
   }
 }

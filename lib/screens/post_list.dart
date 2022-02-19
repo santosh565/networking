@@ -1,4 +1,3 @@
-import 'package:counter_with_bloc/bloc/placeholder_bloc.dart';
 import 'package:counter_with_bloc/model/post.dart';
 import 'package:counter_with_bloc/screens/bloc/post_bloc.dart';
 import 'package:flutter/material.dart';
@@ -13,29 +12,40 @@ class PostsList extends StatefulWidget {
 
 class _PostsListState extends State<PostsList> {
   final _scrollController = ScrollController();
-  final PlaceHolderBloc _placeholderBloc = PlaceHolderBloc();
 
   @override
   void initState() {
     super.initState();
-    _placeholderBloc.getAllPosts();
     _scrollController.addListener(_onScroll);
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<Post>>(
-        stream: _placeholderBloc.posts,
-        builder: (context, snapshot) {
-          var posts = snapshot.data ?? [];
-          return ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) {
-              var post = posts[index];
-              return PostListItem(post: post);
-            },
-          );
-        });
+    return BlocBuilder<PostBloc, PostState>(
+      builder: (context, state) {
+        switch (state.status) {
+          case PostStatus.failure:
+            return const Center(child: Text('failed to fetch posts'));
+          case PostStatus.success:
+            if (state.posts.isEmpty) {
+              return const Center(child: Text('no posts'));
+            }
+            return ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return index >= state.posts.length
+                    ? const BottomLoader()
+                    : PostListItem(post: state.posts[index]);
+              },
+              itemCount: state.hasReachedMax
+                  ? state.posts.length
+                  : state.posts.length + 1,
+              controller: _scrollController,
+            );
+          default:
+            return const Center(child: CircularProgressIndicator());
+        }
+      },
+    );
   }
 
   @override

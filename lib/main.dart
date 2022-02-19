@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (_) => PostBloc(httpClient: http.Client())..add(PostFetched()),
+        create: (_) => PostBloc()..add(PostFetched()),
         child: const PostsList(),
       ),
     );

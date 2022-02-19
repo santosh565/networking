@@ -7,8 +7,6 @@ class PlaceHolderBloc {
     return _instance;
   }
   PlaceHolderBloc._internal();
-
-
   static final PlaceHolderBloc _instance = PlaceHolderBloc._internal();
 
   final _repository = PlaceHolderRepository();

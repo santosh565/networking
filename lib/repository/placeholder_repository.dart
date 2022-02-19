@@ -1,6 +1,6 @@
 import 'package:counter_with_bloc/model/post.dart';
-import 'package:counter_with_bloc/repository/api_result.dart';
 import 'package:counter_with_bloc/repository/api_client.dart';
+import 'package:counter_with_bloc/repository/api_result.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -8,13 +8,11 @@ import '../helper_functions/error_handler.dart';
 import '../response/get_all_post_response.dart';
 
 class PlaceHolderRepository {
-  late Dio _dio;
+  final Dio _dio = ApiClient().dio;
   factory PlaceHolderRepository() {
     return _instance;
   }
-  PlaceHolderRepository._internal() {
-    _dio = apiClient.dio;
-  }
+  PlaceHolderRepository._internal();
 
   static final PlaceHolderRepository _instance =
       PlaceHolderRepository._internal();

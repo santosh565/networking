@@ -44,7 +44,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
               ),
             );
     } catch (error) {
-      debugPrint(error.toString());
       emit(state.copyWith(status: PostStatus.failure, error: error.toString()));
     }
   }

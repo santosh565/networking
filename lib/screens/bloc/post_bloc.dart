@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:counter_with_bloc/model/post.dart';
 import 'package:counter_with_bloc/repository/placeholder_repository.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 
 part 'post_event.dart';
 part 'post_state.dart';

@@ -17,7 +17,13 @@ class PlaceHolderRepository {
 
   Future<List<Post>> fetchPosts([int startIndex = 0]) async {
     try {
-      final response = await _dio.get('/posts');
+      final response = await _dio.get(
+        '/posts',
+        queryParameters: {
+          '_start': '$startIndex',
+          '_limit': '10',
+        },
+      );
       List<Post> posts = AllPostsResponse.fromJson(response.data).posts;
       return posts;
     } catch (error, stackTrace) {

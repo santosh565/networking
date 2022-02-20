@@ -22,36 +22,42 @@ class _PostsListState extends State<PostsList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<PostBloc, PostState>(
-        builder: (context, state) {
-          switch (state.status) {
-            case PostStatus.failure:
-              return 
-              Center(
-                child: Text(
-                  state.error!,
-                  style: const TextStyle(fontSize: 35),
-                ),
-              );
-            case PostStatus.success:
-              if (state.posts.isEmpty) {
-                return const Center(child: Text('no posts'));
-              }
-              return ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  return index >= state.posts.length
-                      ? const BottomLoader()
-                      : PostListItem(post: state.posts[index]);
-                },
-                itemCount: state.hasReachedMax
-                    ? state.posts.length
-                    : state.posts.length + 1,
-                controller: _scrollController,
-              );
-            default:
-              return const Center(child: CircularProgressIndicator());
-          }
-        },
+      appBar: AppBar(
+        title: const Text('Posts'),
+      ),
+      body: SafeArea(
+        child: BlocBuilder<PostBloc, PostState>(
+          builder: (context, state) {
+            switch (state.status) {
+              case PostStatus.failure:
+                return Center(
+                  child: Text(
+                    state.error!,
+                    style: const TextStyle(fontSize: 35),
+                  ),
+                );
+              case PostStatus.success:
+                if (state.posts.isEmpty) {
+                  return const Center(child: Text('no posts'));
+                }
+                return ListView.builder(
+                  padding: const EdgeInsets.all(8),
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return index >= state.posts.length
+                        ? const BottomLoader()
+                        : PostListItem(post: state.posts[index]);
+                  },
+                  itemCount: state.hasReachedMax
+                      ? state.posts.length
+                      : state.posts.length + 1,
+                  controller: _scrollController,
+                );
+              default:
+                return const Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
       ),
     );
   }
@@ -99,7 +105,7 @@ class PostListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return Material(
+    return Card(
       child: ListTile(
         leading: Text('${post.id}', style: textTheme.caption),
         title: Text(post.title),

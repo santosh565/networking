@@ -11,12 +11,6 @@ class ApiClient {
     _dio = Dio(_options);
 
     _dio.interceptors.addAll([
-      // InterceptorsWrapper(onRequest: (requestOptions, handler) {
-      //   _dio.lock();
-      //   requestOptions.headers[HttpHeaders.authorizationHeader] = '';
-
-      //   _dio.unlock();
-      // }),
       LogInterceptor(requestBody: true, responseBody: true),
     ]);
   }
@@ -24,7 +18,7 @@ class ApiClient {
   static final ApiClient _instance = ApiClient._internal();
 
   static const String _baseUrl = "https://jsonplaceholder.typicode.com";
-  static const String _appUrl = "$_baseUrl/";
+  static const String _appUrl = _baseUrl;
 
   late Dio _dio;
   get dio => _dio;

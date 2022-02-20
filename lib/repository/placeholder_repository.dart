@@ -4,6 +4,7 @@ import 'package:counter_with_bloc/repository/api_client.dart';
 import 'package:counter_with_bloc/response/get_all_post_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class PlaceHolderRepository {
   final Dio _dio = ApiClient().dio;
@@ -26,8 +27,8 @@ class PlaceHolderRepository {
       );
       List<Post> posts = AllPostsResponse.fromJson(response.data).posts;
       return posts;
-    } catch (error, stackTrace) {
-      debugPrint("error occured $error stackTrace:$stackTrace");
+    } catch (error ) {
+      debugPrint(error.toString());
       throw errorHandler(error);
     }
   }

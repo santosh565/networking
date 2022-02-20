@@ -10,9 +10,14 @@ class ApiClient {
   ApiClient._internal() {
     _dio = Dio(_options);
 
-    _dio.interceptors.addAll([
-      LogInterceptor(requestBody: true, responseBody: true),
-    ]);
+    _dio.interceptors.addAll(
+      [
+        LogInterceptor(
+          requestBody: true,
+          responseBody: true,
+        ),
+      ],
+    );
   }
 
   static final ApiClient _instance = ApiClient._internal();

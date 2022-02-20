@@ -24,7 +24,10 @@ String errorHandler(error) {
             "Received invalid status code: ${dioError.response?.statusCode}";
         switch (dioError.response?.statusCode) {
           case 401:
-            errorDescription = "unauthenticated";
+            errorDescription = "unauthenticated ";
+            break;
+          case 404:
+            errorDescription = "Route not found 😞";
             break;
           case 422:
             if (dioError.response?.data["errors"] != null) {

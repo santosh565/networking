@@ -26,7 +26,13 @@ class _PostsListState extends State<PostsList> {
         builder: (context, state) {
           switch (state.status) {
             case PostStatus.failure:
-              return Center(child: Text(state.error!));
+              return 
+              Center(
+                child: Text(
+                  state.error!,
+                  style: const TextStyle(fontSize: 35),
+                ),
+              );
             case PostStatus.success:
               if (state.posts.isEmpty) {
                 return const Center(child: Text('no posts'));
@@ -66,7 +72,7 @@ class _PostsListState extends State<PostsList> {
     if (!_scrollController.hasClients) return false;
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
-    return currentScroll == maxScroll ;
+    return currentScroll == maxScroll;
   }
 }
 
